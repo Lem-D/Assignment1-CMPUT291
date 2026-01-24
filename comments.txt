@@ -1,25 +1,25 @@
 These were the comments we made about each persons ER diagram togther in call
 
 nxhu's  ER diagram
-- Recommend list should be its own entity
-- Job should be a separate entity being differentiated by ordervalue
-- Genre needs to be an entity
+- Recommend list should be its own entity (ldipasup)
+- Job should be a separate entity being differentiated by ordervalue(ldipasup)
+- Genre needs to be an entity (yaotatong)
 
 ldipasup's ER diagram
-- IsA between actor and crew m,ember
-- role and job needs to be entities
-- recommended list needs to be an entity
-- prefer and customer shouldn't be an arrow
-- review and customer shouldn't be an arrow
-- session and  watches should be a normal line
-- customer and should have an identifier
-- prefers and genre shouldnt be an arrow
-- follows has to be a relation
+- IsA between actor and crew member (yaotong)
+- role and job needs to be entities (nxhu)
+- recommended list needs to be an entity (nxhu)
+- prefer and customer shouldn't be an arrow (yaotong)
+- review and customer shouldn't be an arrow (yaotong)
+- session and  watches should be a normal line (yaotong)
+- customer and should have an identifier (nxhu)
+- prefers and genre shouldnt be an arrow (nxhu)
+- follows has to be a relation (nxhu)
 
 yaotong's
-- session should e a weak entity
-- system and maintain should be removed
-- genre name should be a primary key
-- role should be an attribute
-- total participation between movie and recommend
-- rating score cant be the primary key
+- session should e a weak entity (ldipasup)
+- system and maintain should be removed (ldipasup)
+- genre name should be a primary key (nxhu)
+- role should be an attribute (ldipasup)
+- total participation between movie and recommend (nxhu)
+- rating score cant be the primary key (nxhu)
