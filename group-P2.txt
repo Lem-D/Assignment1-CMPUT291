@@ -1,0 +1,90 @@
+CREATE TABLE Users(
+	uid CHAR(8),
+	name CHAR(20),
+	location CHAR(20),
+	desc CHAR(20),
+	cdate CHAR(8),
+	PRIMARY KEY (uid)
+);
+
+CREATE TABLE Badges(
+	class CHAR(8),
+	name CHAR(20),
+	PRIMARY KEY (class)
+);
+
+CREATE TABLE Ubadges(
+	bdate CHAR(8),
+	uid CHAR(8) NOT NULL,
+	class CHAR(8),
+	PRIMARY KEY (uid, bdate, class),
+	FOREIGN KEY (uid) REFERENCES users
+		ON DELETE CASCADE,
+	FOREIGN KEY (class) REFERENCES Badges
+		ON DELETE CASCADE
+);
+
+CREATE TABLE create_Posts(
+	uid CHAR(8) NOT NULL,
+	pid INTEGER,
+	pdate CHAR(8),
+	title CHAR(20),
+	body CHAR(500),
+	PRIMARY KEY (pid),
+	FOREIGN KEY (uid) REFERENCES Users
+		ON DELETE NO ACTION
+);
+
+CREATE TABLE comment(
+ctext CHAR(500),
+cdate CHAR(8),
+uid CHAR(8),
+	pid INTEGER,
+	PRIMARY KEY (uid, pid),
+	FOREIGN KEY (uid) REFERENCES Users,
+	FOREIGN KEY (pid) REFERENCES create_Posts
+);
+
+CREATE TABLE QA_Answers(
+	pid INTEGER,
+	Qpid INTEGER NOT NULL,
+	PRIMARY KEY (pid),
+	FOREIGN KEY (Qpid) REFERENCES Question(pid),
+		ON DELETE NO ACTION
+	FOREIGN KEY (pid) REFERENCES create_Posts
+		ON DELETE CASCADE
+);
+
+CREATE TABLE Questions(
+	pid INTEGER,
+	PRIMARY KEY(pid),
+	FOREIGN KEY (pid) REFERENCES create_Posts
+		ON DELETE CASCADE
+);
+
+CREATE TABLE Accepted(
+	pid INTEGER,
+	Qpid INTEGER,
+	PRIMARY KEY (Qpid),
+	FOREIGN KEY (Qpid) REFERENCES Question(pid),
+	FOREIGN KEY (pid) REFERENCES QA_Answers
+);
+
+CREATE TABLE received_Votes(
+	vtype CHAR(8),
+	vdate CHAR(8),
+	vno INTEGER,
+	pid INTEGER NOT NULL,
+	PRIMARY KEY (pid, vno),
+	FOREIGN KEY (pid) REFERENCES create_Posts
+		ON DELETE CASCADE
+);
+
+CREATE TABLE castBy(
+	uid CHAR(8),
+	pid INTEGER,
+	vno INTEGER,
+	PRIMARY KEY (pid, vno),
+	FOREIGN KEY (pid, vno) REFERENCES received_Votes,
+	FOREIGN KEY (uid) REFERENCES Users
+);
